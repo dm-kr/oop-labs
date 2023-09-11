@@ -76,10 +76,10 @@ int main()
     double absRes2 = absolute(c2); 
     printf("\nAbsolute of c2 = %.1f\n", absRes2);
 
-    double atanRes1 = atan2(c1.real, c1.imag); 
+    double atanRes1 = atan2(c1.imag, c1.real); 
     printf("\natan of c1 = %.1f\n", atanRes1);
 
-    double atanRes2 = atan2(c2.real, c2.imag); 
+    double atanRes2 = atan2(c2.imag, c2.real); 
     printf("\natan of c2 = %.1f\n", atanRes2);
     
     return 0;
