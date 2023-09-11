@@ -9,7 +9,8 @@ private:
     float i;
 
 public:
-    Complex(float real = 0, float imaginary = 0) {
+    Complex(float real = 0, float imaginary = 0)
+    {
         r = real;
         i = imaginary;
     }
@@ -28,7 +29,7 @@ public:
     {
         Complex answer;
         answer.r = r + num.r;
-        answer.i = i + num.i; 
+        answer.i = i + num.i;
         return answer;
     }
 
@@ -36,7 +37,7 @@ public:
     {
         Complex answer;
         answer.r = r - num.r;
-        answer.i = i - num.i; 
+        answer.i = i - num.i;
         return answer;
     }
 
@@ -44,7 +45,7 @@ public:
     {
         Complex answer;
         answer.r = (r * num.r) - (i * num.i);
-        answer.i = (r * num.i) + (i * num.r); 
+        answer.i = (r * num.i) + (i * num.r);
         return answer;
     }
 
@@ -52,24 +53,24 @@ public:
     {
         Complex answer;
         answer.r = (r * num.r + i * num.i) / (pow(num.r, 2) + pow(num.i, 2));
-        answer.i = (num.r * i - r * num.i) / (pow(num.r, 2) + pow(num.i, 2)); 
+        answer.i = (num.r * i - r * num.i) / (pow(num.r, 2) + pow(num.i, 2));
         return answer;
     }
 
     double absolute()
     {
-        double answer = sqrt(pow(r, 2) + pow(i, 2)); 
+        double answer = sqrt(pow(r, 2) + pow(i, 2));
         return answer;
     }
 
     double tan()
     {
-        double answer = atan2(i, r); 
+        double answer = atan2(i, r);
         return answer;
     }
 };
 
-std::ostream& operator<<(std::ostream& stream, const Complex& obj)
+std::ostream &operator<<(std::ostream &stream, const Complex &obj)
 {
     stream << obj.getR() << " + " << obj.getI() << "i";
     return stream;
@@ -78,7 +79,7 @@ std::ostream& operator<<(std::ostream& stream, const Complex& obj)
 int main()
 {
     Complex c1(1, 0), c2(0, 1);
-    
+
     std::cout << "Sum result of c1 and c2: " << c1 + c2;
     std::cout << "Sub result of c1 and c2: " << c1 - c2;
     std::cout << "Mul result of c1 and c2: " << c1 * c2;
