@@ -4,69 +4,69 @@
 
 class Complex
 {
-    private:
-        float r;
-        float i;
+private:
+    float r;
+    float i;
 
-    public:
-        Complex(float real = 0, float imaginary = 0) {
-            r = real;
-            i = imaginary;
-        }
+public:
+    Complex(float real = 0, float imaginary = 0) {
+        r = real;
+        i = imaginary;
+    }
 
-        float getR() const
-        {
-            return r;
-        }
+    float getR() const
+    {
+        return r;
+    }
 
-        float getI() const
-        {
-            return i;
-        }
+    float getI() const
+    {
+        return i;
+    }
 
-        Complex operator+(Complex &num)
-        {
-            Complex answer;
-            answer.r = r + num.r;
-            answer.i = i + num.i; 
-            return answer;
-        }
+    Complex operator+(Complex &num)
+    {
+        Complex answer;
+        answer.r = r + num.r;
+        answer.i = i + num.i; 
+        return answer;
+    }
 
-        Complex operator-(Complex &num)
-        {
-            Complex answer;
-            answer.r = r - num.r;
-            answer.i = i - num.i; 
-            return answer;
-        }
+    Complex operator-(Complex &num)
+    {
+        Complex answer;
+        answer.r = r - num.r;
+        answer.i = i - num.i; 
+        return answer;
+    }
 
-        Complex operator*(Complex &num)
-        {
-            Complex answer;
-            answer.r = (r * num.r) - (i * num.i);
-            answer.i = (r * num.i) + (i * num.r); 
-            return answer;
-        }
+    Complex operator*(Complex &num)
+    {
+        Complex answer;
+        answer.r = (r * num.r) - (i * num.i);
+        answer.i = (r * num.i) + (i * num.r); 
+        return answer;
+    }
 
-        Complex operator/(Complex &num)
-        {
-            Complex answer;
-            answer.r = (r * num.r + i * num.i) / (pow(num.r, 2) + pow(num.i, 2));
-            answer.i = (num.r * i - r * num.i) / (pow(num.r, 2) + pow(num.i, 2)); 
-            return answer;
-        }
+    Complex operator/(Complex &num)
+    {
+        Complex answer;
+        answer.r = (r * num.r + i * num.i) / (pow(num.r, 2) + pow(num.i, 2));
+        answer.i = (num.r * i - r * num.i) / (pow(num.r, 2) + pow(num.i, 2)); 
+        return answer;
+    }
 
-        double absolute()
-        {
-            double answer = sqrt(pow(r, 2) + pow(i, 2)); 
-            return answer;
-        }
+    double absolute()
+    {
+        double answer = sqrt(pow(r, 2) + pow(i, 2)); 
+        return answer;
+    }
 
-        double tan()
-        {
-            double answer = atan2(i, r); 
-            return answer;
-        }
+    double tan()
+    {
+        double answer = atan2(i, r); 
+        return answer;
+    }
 };
 
 std::ostream& operator<<(std::ostream& stream, const Complex& obj)
