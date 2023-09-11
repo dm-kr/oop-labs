@@ -61,17 +61,6 @@ class Complex
 int main()
 {
     Complex c1(1, 0), c2(0, 1);
-    // printf("First number,\n");
-    // printf("Enter real part: ");
-    // scanf("%f", &c1.r);
-    // printf("Enter imaginary part: ");
-    // scanf("%f", &c1.i);
-
-    // printf("Second number, \n");
-    // printf("Enter real part: ");
-    // scanf("%f", &c2.r);
-    // printf("Enter imaginary part: ");
-    // scanf("%f", &c2.i);
 
     c1.addNumbers(c2);
     c1.subtractNumbers(c2);
