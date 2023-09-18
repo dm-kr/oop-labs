@@ -2,6 +2,8 @@
 #include <stdio.h>
 #include <math.h>
 
+using namespace std;
+
 class Complex
 {
 private:
@@ -79,6 +81,7 @@ std::ostream &operator<<(std::ostream &stream, const Complex &obj)
 int main()
 {
     Complex c1(1, 0), c2(0, 1);
+
 
     std::cout << "Sum result of c1 and c2: " << c1 + c2;
     std::cout << "Sub result of c1 and c2: " << c1 - c2;
