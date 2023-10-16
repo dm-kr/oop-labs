@@ -1,80 +1,42 @@
 #include <iostream>
 
-// using namespace std;
+using namespace std;
 
-// struct Node
-// {
-//     int value;
-//     Node *next;
-//     Node() : value(0), next(nullptr) {}
-//     Node(int x) : value(x), next(nullptr) {}
-//     Node(int x, Node *next) : value(x), next(next) {}
-// };
-
-// class List
-// {
-//     Node *head;
-//     Node *tail;
-// public:
-//     List()
-//         :head(), tail(head)
-//     {}
-
-//     int getvalue()
-//     {
-//         return head->value;
-//     }
-
-//     // void insert()
-//     // {
-//     // }
-
-//     // void del()
-//     // {
-//     // }
-
-//     // void print_list()
-//     // {
-//     //     Node *curr(head);
-
-//     //     while (curr != nullptr)
-//     //     {
-//     //         std::cout << curr->value;
-//     //     }
-//     //     std::cout << endl;
-//     // }
-
-//     // void push_back(int value)
-//     // {
-//     //     Node *temp = new Node;
-//     //     temp->value = value;
-//     //     temp->next = nullptr;
-//     //     tail = temp;
-//     // }
-
-//     // Node pop()
-//     // {
-
-//     // }
-// };
 
 struct Node {
     int val;
-    Node* next;
+    Node *next;
     Node(int val) {
         this->val = val;
-        next = NULL;
+        next = nullptr;
     }
 };
 
-class MyLinkedList
+class LinkedList
 {
+    int size = 1;
+    Node *head = new Node(0);
+    Node *tail = head;
+
 public:
-    int size = 0;
-    Node* head = NULL;
-    Node* tail = NULL;
-    MyLinkedList() {}
-    int get(int index) {
+    LinkedList() {}
+    LinkedList(int value)
+    {
+        head = new Node(value);
+        tail = head;
+    }
+    LinkedList(int value, Node *next)
+    {
+        head = new Node(value);
+        tail = next;
+    }
+
+    int getsize()
+    {
+        return size;
+    }
+
+    int getvalue(int index) {
         if(index >= size)
             return -1;
         Node* temp = head;
@@ -84,85 +46,121 @@ public:
         return temp->val;
     }
     
-    void addAtHead(int val) {
-        Node* nnode = new Node(val);
-        nnode->next = head;
-        head = nnode;
-        if(size==0)
-            tail = nnode;
+    void push(int val) {
+        Node* newnode = new Node(val);
+        newnode->next = head;
+        head = newnode;
+        if(size == 0)
+            tail = newnode;
         size++;
     }
     
-    void addAtTail(int val) {
-        if(size ==0) {
-            addAtHead(val);
+    void pushback(int val) {
+        if(size  == 0) {
+            push(val);
             return;
         }
-        Node* nnode = new Node(val);
-        tail->next = nnode;
-        tail = nnode;
+        Node *newnode = new Node(val);
+        tail->next = newnode;
+        tail = newnode;
         size++;
     }
     
-    void addAtIndex(int index, int val) {
+    void insert(int index, int val) {
         if(index>size)
             return;
-        else if(index == size)
-            addAtTail(val);
-        else if(index==0)
-            addAtHead(val);
-        else {
-            Node* temp =head;
-            Node* nnode = new Node(val);
-            for(int i=0; i<index-1; ++i) {
-                temp = temp->next;
-            }
-            nnode->next = temp->next;
-            temp->next = nnode;
-            size++;
+        if(index == size)
+        {
+            pushback(val);
+            return;
         }
+        if(index == 0)
+        {
+            push(val);
+            return;
+        }
+        Node *temp =head;
+        Node *newnode = new Node(val);
+        for(int i=0; i<index-1; ++i) {
+            temp = temp->next;
+        }
+        newnode->next = temp->next;
+        temp->next = newnode;
+        size++;
     }
     
-    void deleteAtIndex(int index) {
+    void delIndex(int index) {
         if(index>=size)
             return;
-        else if(index == size-1) {
+        if(index == size-1) {
            
-            if(index==0){
-                head==NULL;
-                tail==NULL;
+            if(index == 0){
+                head = nullptr;
+                tail = nullptr;
+                return;
             }
-            else {
-                Node* temp = head;
-                while(temp->next!=tail) {
-                    temp= temp->next;
-                }
-                tail = temp;
-                temp->next = NULL;
-            }
-           
-        }
-        else if(index==0) {
-            Node* temp = head;
-            head = head->next;
-            temp =NULL;
-        }
-        else {
-            Node* temp = head;
-            for(int i=0; i<index-1;++i) {
+            
+            Node *temp = head;
+            while(temp->next != tail) {
                 temp = temp->next;
             }
-            Node* t = temp->next;
-            temp->next = temp->next->next;
-            t->next = NULL;
-            
+            tail = temp;
+            temp->next = nullptr;
+            return;
         }
+        if(index == 0) {
+            head = head->next;
+            return;
+        }
+        
+        Node *temp = head;
+        for(int i=0; i<index-1; ++i) {
+            temp = temp->next;
+        }
+        Node *t = temp->next;
+        temp->next = temp->next->next;
+        t->next = nullptr;
+            
+        size--;
+    }
+
+    void printList()
+    {
+        Node *curr = head;
+        while (curr != tail)
+        {
+            std::cout << curr->val << ", ";
+            curr = curr->next;
+        }
+        std::cout << tail->val << endl;
+    }
+
+    void pop()
+    {
+        Node *curr = head;
+        while (curr->next != tail)
+        {
+            curr = curr->next;
+        }
+        tail = curr;
         size--;
     }
 };
 
 int main()
 {
-    List a;
-    std::cout << a.getvalue() << std::endl;
+    LinkedList a(1);
+    a.pushback(4);
+    a.pushback(6);
+    a.pushback(7);
+    a.push(13);
+    a.insert(3, 5);
+    std::cout << a.getvalue(1) << std::endl;
+    a.printList();
+    std::cout << a.getsize() << std::endl;
+    a.delIndex(2);
+    a.printList();
+    a.pop();
+    a.printList();
+    std::cout << a.getsize() << std::endl;
 }
